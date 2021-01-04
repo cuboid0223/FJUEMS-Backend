@@ -16,7 +16,7 @@ if(empty($request)){
 }else{
     //print_r($request);
 }
-$sql = "select * from EVENTS ORDER BY eve_id DESC";
+$sql = "select * from EVENTS ORDER BY eve_id DESC LIMIT 8";
 
 $statement = $connection -> prepare($sql);// ???
 $statement -> execute();// ???
