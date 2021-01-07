@@ -16,10 +16,11 @@ if(empty($request)){
 }else{
     print_r($request);
 }
-
+$user_id = $request -> user_id;
 $imgURL = $request -> file_input;
 $title = $request -> title_input;
 $limit = $request -> limit_input;
+$type =  $request -> type_input;
 $description = $request -> description_textarea;
 $datetime_End = $request -> datetime_End;
 $datetime_Start = $request -> datetime_Start;
@@ -28,12 +29,12 @@ if(!empty($datetime_Start) and !empty($title) and !empty($description) ){
 
     $sql = 
     "INSERT INTO `EVENTS` (`eve_id`, `eve_title`, `eve_imgURL`, `eve_timeStart`, `eve_timeEnd`, `eve_limit`, `eve_description`, `eve_userId`, `eve_typeId`) 
-    VALUES (NULL, '$title', '$imgURL', '$datetime_Start', '$datetime_End', '$limit', '$description', '26', '1')
+    VALUES (NULL, '$title', '$imgURL', '$datetime_Start', '$datetime_End', '$limit', '$description', '$user_id', '$type')
     ";
-    echo $sql;
+    //echo $sql;
     $statement = $connection -> prepare($sql);// ???
     $statement -> execute();// ???
-    $users = $statement -> fetchAll(PDO::FETCH_ASSOC);// ???
+    $events = $statement -> fetchAll(PDO::FETCH_ASSOC);// ???
     
     // print_r($users);
 }

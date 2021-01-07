@@ -21,6 +21,7 @@ if(empty($request)){
 
 $imgURL = $request -> file_input;
 $title = $request -> title_input;
+$type = $request -> type_input;
 $limit = $request -> limit_input;
 $description = $request -> description_textarea;
 $datetime_End = $request -> datetime_End;
@@ -34,13 +35,14 @@ if(!empty($_GET['eventID']) ){
    UPDATE `EVENTS` SET 
    `eve_imgURL` = '$imgURL',
    `eve_title` = '$title', 
+   `eve_typeId` = '$type',
    `eve_timeStart` = '$datetime_Start', 
    `eve_timeEnd` = '$datetime_End', 
    `eve_limit` = '$limit', 
    `eve_description` = '$description' 
    WHERE `EVENTS`.`eve_id` = $id
     ";
-    //echo $sql;
+    echo $sql;
     $statement = $connection -> prepare($sql);// ???
     $statement -> execute();// ???
     // print_r($users);
@@ -48,7 +50,6 @@ if(!empty($_GET['eventID']) ){
     echo 'no id';
 }
 
-header("http://localhost:3000");
 
 
 

@@ -17,21 +17,21 @@ if(empty($request)){
     print_r($request);
 }
 
-if(!empty($_GET['eventID']) ){
-    $id = $_GET['eventID'];
+if(!empty($_GET['q']) ){
+    $term = $_GET['q'];
     $sql = 
     " 
-    DELETE FROM `EVENTS` WHERE `EVENTS`.`eve_id` = $id
+    SELECT * FROM EVENTS WHERE eve_title LIKE '%$term%' or eve_typeId LIKE '%$term%'
     ";
-    echo $sql;
+    //echo $sql;
     $statement = $connection -> prepare($sql);// ???
     $statement -> execute();// ???
-    // $users = $statement -> fetchAll(PDO::FETCH_ASSOC);// ???
-    
+    $events = $statement -> fetchAll(PDO::FETCH_ASSOC);// ???
+    echo json_encode($events, JSON_UNESCAPED_UNICODE);
     // print_r($users);
 }
 
-
+header("http://localhost:3000");
 
 
 
